@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Agenda</string>
+    <string name="txt_btn_crear">Crear base</string>
+    <string name="hint_nombre">Nombre:</string>
+    <string name="hint_telefono">Telefono:</string>
+    <string name="hint_correo_electronico">Correo electronico:</string>
+    <string name="txt_btn_guardar">Guardar registro</string>
+    <string name="txt_menu_nuevo">Nuevo registro</string>
+    <string name="txt_editar">Editar registro</string>
+    <string name="txt_contacto">Contacto</string>
+</resources>

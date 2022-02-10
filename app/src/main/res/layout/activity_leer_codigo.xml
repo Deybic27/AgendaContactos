@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LeerCodigoActivity"
+    android:background="@color/graysBackground">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="textStart"
+            android:textColor="@color/grays"
+            android:textSize="15sp"
+            android:layout_margin="10sp"
+            android:text="Obtener datos" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="15sp"
+            android:background="@drawable/shape_list">
+
+            <Button
+                android:id="@+id/btnLeerCodigo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Leer codigo"
+                tools:layout_editor_absoluteX="139dp"
+                tools:layout_editor_absoluteY="16dp" />
+
+            <EditText
+                android:id="@+id/txtScanCedula"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="76dp"
+                android:ems="10"
+                android:inputType="textMultiLine"
+                app:layout_constraintTop_toBottomOf="@+id/btnLeerCodigo"
+                tools:layout_editor_absoluteX="100dp" />
+
+            <EditText
+                android:id="@+id/txtScanNombre"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                app:layout_constraintTop_toBottomOf="@+id/txtScanCedula"
+                tools:layout_editor_absoluteX="100dp" />
+        </LinearLayout>
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
