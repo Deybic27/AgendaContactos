@@ -45,6 +45,41 @@
                 android:inputType="textPersonName" />
 
             <TextView
+                android:id="@+id/viewDocumento"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="15sp"
+                android:text="@string/hint_document"/>
+
+            <EditText
+                android:id="@+id/txtNumDocument"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:layout_marginHorizontal="15sp"
+                android:inputType="number"
+                android:labelFor="@+id/viewDocumento" />
+
+            <TextView
+                android:id="@+id/viewFechaNacimiento"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="15sp"
+                android:text="@string/hint_date"/>
+
+            <EditText
+                android:id="@+id/txtFechaNacimiento"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:layout_marginHorizontal="15sp"
+                android:inputType="date"
+                android:focusable="false"
+                android:clickable="true"
+                android:labelFor="@+id/viewFechaNacimiento"
+                android:maxLines="1" />
+
+            <TextView
                 android:id="@+id/viewTelefono"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

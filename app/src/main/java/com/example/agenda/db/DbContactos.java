@@ -20,7 +20,7 @@ public class DbContactos extends DbHelper{
         this.context = context;
     }
 
-    public long insertarContacto(String nombre, String telefono, String correo_electronico){
+    public long insertarContacto(String nombre, String documento, String fecha_nacimiento, String telefono, String correo_electronico){
 
         long id = 0;
         try{
@@ -29,6 +29,8 @@ public class DbContactos extends DbHelper{
 
             ContentValues values = new ContentValues();
             values.put("nombre", nombre);
+            values.put("documento", documento);
+            values.put("fecha_nacimiento", fecha_nacimiento);
             values.put("telefono", telefono);
             values.put("correo_electronico", correo_electronico);
 
@@ -53,8 +55,10 @@ public class DbContactos extends DbHelper{
                 contacto = new Contactos();
                 contacto.setId(cursorContactos.getInt(0)); // id
                 contacto.setNombre(cursorContactos.getString(1)); //nombre
-                contacto.setTelefono(cursorContactos.getString(2));// telefono
-                contacto.setCorreo_electronico(cursorContactos.getString(3));// correo
+                contacto.setDocumento(cursorContactos.getString(2)); //Numero de documento de identidad
+                contacto.setFecha_nacimiento(cursorContactos.getString(3)); //Fecha de nacimiento
+                contacto.setTelefono(cursorContactos.getString(4));// telefono
+                contacto.setCorreo_electronico(cursorContactos.getString(5));// correo
                 listaContactos.add(contacto);
             }while (cursorContactos.moveToNext());
         }
@@ -75,15 +79,17 @@ public class DbContactos extends DbHelper{
             contacto = new Contactos();
             contacto.setId(cursorContactos.getInt(0)); // id
             contacto.setNombre(cursorContactos.getString(1)); //nombre
-            contacto.setTelefono(cursorContactos.getString(2));// telefono
-            contacto.setCorreo_electronico(cursorContactos.getString(3));// correo
+            contacto.setDocumento(cursorContactos.getString(2)); //Numero de documento de identidad
+            contacto.setFecha_nacimiento(cursorContactos.getString(3)); //Fecha de nacimiento
+            contacto.setTelefono(cursorContactos.getString(4));// telefono
+            contacto.setCorreo_electronico(cursorContactos.getString(5));// correo
         }
         cursorContactos.close();
 
         return contacto;
     }
 
-    public boolean editarContacto(int id, String nombre, String telefono, String correo_electronico){
+    public boolean editarContacto(int id, String nombre, String documento, String fecha_nacimiento, String telefono, String correo_electronico){
 
         boolean correcto = false;
 
@@ -91,10 +97,13 @@ public class DbContactos extends DbHelper{
         SQLiteDatabase db = dbHelper.getWritableDatabase();
 
         try{
-            db.execSQL("UPDATE " + TABLE_CONTACTOS + " SET nombre = '" + nombre + "', telefono = '" + telefono +"', correo_electronico = '" + correo_electronico +"' WHERE id = '" + id + "'");
+            db.execSQL("UPDATE " + TABLE_CONTACTOS + " SET nombre = '" + nombre + "', documento = '" + documento + "', fecha_nacimiento = '" + fecha_nacimiento + "', telefono = '" + telefono +"', correo_electronico = '" + correo_electronico +"' WHERE id = '" + id + "'");
             correcto = true;
         }catch (Exception ex){
             ex.toString();
+            System.out.println("___________________________*******************************************______________________________");
+            System.out.println(ex.toString());
+            System.out.println("___________________________*******************************************______________________________");
             correcto = false;
         }finally {
             db.close();

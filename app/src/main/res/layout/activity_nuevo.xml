@@ -36,6 +36,23 @@
             android:inputType="textPersonName"
             android:hint="@string/hint_nombre" />
         <EditText
+            android:id="@+id/txtNumDocument"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:layout_marginHorizontal="15sp"
+            android:inputType="number"
+            android:hint="@string/hint_document" />
+        <EditText
+            android:id="@+id/txtFechaNacimiento"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:layout_marginHorizontal="15sp"
+            android:inputType="date"
+            android:maxLines="1"
+            android:hint="@string/hint_date" />
+        <EditText
             android:id="@+id/txtTelefono"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

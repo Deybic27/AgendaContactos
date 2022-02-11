@@ -18,7 +18,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class VerActivity extends AppCompatActivity {
 
-    EditText txtNombre, txtCorreo, txtTelefono;
+    EditText txtNombre, txtCorreo, txtTelefono, txtNumDocument, txtFechaNacimiento;
     TextView txtTitleActivity;
     Button btnGuardar;
     FloatingActionButton fabEditar, fabEliminar;
@@ -31,6 +31,8 @@ public class VerActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ver);
         txtNombre = findViewById(R.id.txtNombre);
+        txtNumDocument = findViewById(R.id.txtNumDocument);
+        txtFechaNacimiento = findViewById(R.id.txtFechaNacimiento);
         txtCorreo = findViewById(R.id.txtCorreoElectronico);
         txtTelefono = findViewById(R.id.txtTelefono);
         btnGuardar = findViewById(R.id.btnGuardar);
@@ -49,19 +51,7 @@ public class VerActivity extends AppCompatActivity {
             id = (int) savedInstanceState.getSerializable("ID");
         }
 
-        dbContactos = new DbContactos(VerActivity.this);
-        contacto = dbContactos.verContacto(id);
-
-        if (contacto != null){
-            txtNombre.setText(contacto.getNombre());
-            txtTelefono.setText(contacto.getTelefono());
-            txtCorreo.setText(contacto.getCorreo_electronico());
-            btnGuardar.setVisibility(View.INVISIBLE);
-            txtNombre.setInputType(InputType.TYPE_NULL);
-            txtTelefono.setInputType(InputType.TYPE_NULL);
-            txtCorreo.setInputType(InputType.TYPE_NULL);
-            txtTitleActivity.setText(R.string.txt_contacto);
-        }
+        llenarCampos(id);
 
         fabEditar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -105,9 +95,17 @@ public class VerActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        llenarCampos(id);
+    }
+
+    public void llenarCampos(int id){
+        dbContactos = new DbContactos(VerActivity.this);
+        contacto = dbContactos.verContacto(id);
+
         if (contacto != null){
-            contacto = dbContactos.verContacto(id);
             txtNombre.setText(contacto.getNombre());
+            txtNumDocument.setText(contacto.getDocumento());
+            txtFechaNacimiento.setText(contacto.getFecha_nacimiento());
             txtTelefono.setText(contacto.getTelefono());
             txtCorreo.setText(contacto.getCorreo_electronico());
             btnGuardar.setVisibility(View.INVISIBLE);

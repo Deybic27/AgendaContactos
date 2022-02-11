@@ -17,7 +17,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class EditarActivity extends AppCompatActivity {
 
-    EditText txtNombre, txtCorreo, txtTelefono;
+    EditText txtNombre, txtCorreo, txtTelefono, txtNumDocument, txtFechaNacimiento;
     TextView txtTitleActivity;
     Button btnGuardar;
     FloatingActionButton fabEditar, fabEliminar;
@@ -30,6 +30,8 @@ public class EditarActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ver);
         txtNombre = findViewById(R.id.txtNombre);
+        txtNumDocument = findViewById(R.id.txtNumDocument);
+        txtFechaNacimiento = findViewById(R.id.txtFechaNacimiento);
         txtCorreo = findViewById(R.id.txtCorreoElectronico);
         txtTelefono = findViewById(R.id.txtTelefono);
         btnGuardar = findViewById(R.id.btnGuardar);
@@ -53,6 +55,8 @@ public class EditarActivity extends AppCompatActivity {
 
         if (contacto != null){
             txtNombre.setText(contacto.getNombre());
+            txtNumDocument.setText(contacto.getDocumento());
+            txtFechaNacimiento.setText(contacto.getFecha_nacimiento());
             txtTelefono.setText(contacto.getTelefono());
             txtCorreo.setText(contacto.getCorreo_electronico());
             fabEditar.setVisibility(View.INVISIBLE);
@@ -64,7 +68,7 @@ public class EditarActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (!txtNombre.getText().toString().equals("") && !txtCorreo.getText().toString().equals("") && !txtTelefono.getText().toString().equals("")){
-                    correcto = dbContactos.editarContacto(id, txtNombre.getText().toString(), txtTelefono.getText().toString(), txtCorreo.getText().toString());
+                    correcto = dbContactos.editarContacto(id, txtNombre.getText().toString(), txtNumDocument.getText().toString(), txtFechaNacimiento.getText().toString(), txtTelefono.getText().toString(), txtCorreo.getText().toString());
                     if (correcto){
                         Toast.makeText(EditarActivity.this, "REGISTRO MODIFICADO", Toast.LENGTH_SHORT).show();
                         verRegistro();
