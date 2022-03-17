@@ -15,6 +15,21 @@
         android:textColor="@color/grays"
         android:textSize="15sp"
         android:layout_margin="10sp"
+        android:text="Buscar" />
+
+    <SearchView
+        android:id="@+id/txtBuscar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shape_list"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="textStart"
+        android:textColor="@color/grays"
+        android:textSize="15sp"
+        android:layout_margin="10sp"
         android:text="Contactos" />
 
     <androidx.recyclerview.widget.RecyclerView

@@ -11,7 +11,9 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.SearchView;
 import android.widget.Toast;
 
 import com.example.agenda.adaptadores.ListaContactosAdapter;
@@ -21,16 +23,27 @@ import com.example.agenda.entidades.Contactos;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements SearchView.OnQueryTextListener{
 
+    SearchView txtBuscar;
     RecyclerView listaContactos;
     ArrayList<Contactos> listaArrayContactos;
+    ListaContactosAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        txtBuscar = findViewById(R.id.txtBuscar);
+
         cargarRecyclerView();
+
+        txtBuscar.setOnQueryTextListener(this);
+
+
+        WindowManager.LayoutParams layout = getWindow().getAttributes();
+        layout.screenBrightness = 0.5F;
+        getWindow().setAttributes(layout);
     }
 
     @Override
@@ -47,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
 
         listaArrayContactos = new ArrayList<>();
 
-        ListaContactosAdapter adapter = new ListaContactosAdapter(dbContactos.mostrarContactos(), new ListaContactosAdapter.Clic() {
+        adapter = new ListaContactosAdapter(dbContactos.mostrarContactos(), new ListaContactosAdapter.Clic() {
             @Override
             public void pressed(Contactos contacto) {
                 Intent intent = new Intent(MainActivity.this, VerActivity.class);
@@ -85,5 +98,16 @@ public class MainActivity extends AppCompatActivity {
     private void scan(){
         Intent intent = new Intent(this, LeerCodigoActivity.class);
         startActivity(intent);
+    }
+
+    @Override
+    public boolean onQueryTextSubmit(String s) {
+        return false;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String s) {
+        adapter.filtrado(s);
+        return false;
     }
 }
